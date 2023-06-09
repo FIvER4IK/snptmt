@@ -104,7 +104,7 @@ def tokenizing(df):
 
 
 
-def first_clustering(df, start_message, end_message):
+def first_clustering(df, start_message, end_message, max_distance=0.5):
     nlp = spacy.load("ru_core_news_sm")
     df_tokenized_2 = df['message'][start_message:end_message + 1].apply(nlp)
 
@@ -121,7 +121,7 @@ def first_clustering(df, start_message, end_message):
     dendrogram(linkage_matrix)
 
     # Assign each message to a cluster
-    max_distance = 0.5  # You may need to adjust this value based on the dendrogram
+    #max_distance = 0.5  # You may need to adjust this value based on the dendrogram
     clusters = fcluster(linkage_matrix, t=max_distance, criterion='distance')
 
     # Create a dictionary that maps cluster numbers to message indices
