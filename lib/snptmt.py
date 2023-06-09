@@ -139,7 +139,7 @@ def first_clustering(df, start_message, end_message, max_distance=0.5):
     return cluster_dict
 
 
-def add_points(df, start_message, end_message, cluster_dict):
+def add_points(df, start_message, end_message, cluster_dict, max_distance=0.5):
     nlp = spacy.load("ru_core_news_sm")
     #take part of prev clusters
     half_cluster_dict = {}
@@ -180,7 +180,7 @@ def add_points(df, start_message, end_message, cluster_dict):
     #dendrogram(linkage_matrix)
     
     # Assign each message to a cluster
-    max_distance = 0.5  # You may need to adjust this value based on the dendrogram
+    #max_distance = 0.5  # You may need to adjust this value based on the dendrogram
     clusters = fcluster(linkage_matrix, t=max_distance, criterion='distance')
 
     # Create a dictionary that maps cluster numbers to message indices
